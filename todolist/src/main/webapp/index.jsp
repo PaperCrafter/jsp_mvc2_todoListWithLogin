@@ -1,9 +1,26 @@
 <%@ page language = "java" contentType ="text/html; charset = UTF-8" %>
+<%@page import="java.io.PrintWriter"%>
 <!doctype html>
 <html>
 <head>
 <link href="css/indexStyle.css" rel="stylesheet" type="text/css">
+<%
+String loginMsg = (String)request.getAttribute("login");
+if(loginMsg == "dontExist"){
+	response.setContentType("text/html; charset=utf-8");
+	PrintWriter pw = response.getWriter();
+	pw.println("<script>alert('user dosent exits!');</script>");
+}
 
+String signinMsg = (String)request.getAttribute("signin");
+if(signinMsg == "success"){
+	response.setContentType("text/html; charset=utf-8");
+	PrintWriter pw = response.getWriter();
+	pw.println("<script>alert('success!');</script>");
+}
+
+
+%>
 <script>
 window.onload = function(){
 	var btn = document.getElementById("sign_in_btn");

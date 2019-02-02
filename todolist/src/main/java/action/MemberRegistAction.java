@@ -16,13 +16,35 @@ public class MemberRegistAction implements Action {
 		int idInt = 0;
 		String userName = request.getParameter("user");
 		String password = request.getParameter("pass");
+		String cnfPassword = request.getParameter("cnfPass");
 		MemberVo vo = new MemberVo(idInt, userName, password);
 		
 		MemberRegisterService service = new MemberRegisterService();
-		service.insert(vo);
+		String res = service.insert(vo);
+
+		if(res=="existUser"){
+			String result = "existUser";
+			request.setAttribute("signin",result);
+			return new ActionForward(false,"member/member_form.jsp");
+		}
 		
-		System.out.println(idInt + "/" + userName + "/" + password);
+		else if(password != cnfPassword) {
+			String result = "pwdDosentEqual";
+			request.setAttribute("signin",result);
+			System.out.println("패스워드가 일치하지 않습니다.");
+			return new ActionForward(false,"member/member_form.jsp");
+			
+		}
 		
-		return new ActionForward(true,"index.jsp");
+		else if(res=="success") {
+			String result = "success";
+			request.setAttribute("signin",result);
+			System.out.println(idInt + "/" + userName + "/" + password);
+			return new ActionForward(false,"index.jsp");
+		}
+		
+		
+		return new ActionForward(false,"member/member_form.jsp");
+		
 	}
 }

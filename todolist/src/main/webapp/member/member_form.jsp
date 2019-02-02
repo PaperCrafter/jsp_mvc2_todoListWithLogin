@@ -1,11 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>memer_form</title>
-<link href = "css/todolist.css" rel="stylesheet" type="text/css" >
+<link href = "css/memberFormStyle.css" rel="stylesheet" type="text/css">
+
+<%
+String signinMsg = (String)request.getAttribute("signin");
+if(signinMsg == "existUser"){
+	response.setContentType("text/html; charset=utf-8");
+	PrintWriter pw = response.getWriter();
+	pw.println("<script>alert('uesrname already exist');</script>");
+}
+
+if(signinMsg == "pwdDosentEqual"){
+	response.setContentType("text/html; charset=utf-8");
+	PrintWriter pw = response.getWriter();
+	pw.println("<script>alert('passwords dosent equal');</script>");
+}
+
+%>
 </head>
 <body>
 <div class = "login-form">
@@ -19,7 +36,7 @@
 		<input type = "password" name = "pass"></input>
 		
 		<p>confirm-password</p>
-		<input type = "password"></input>
+		<input type = "password" name ="cnfPass"></input>
 		
 		<input type="submit" id="sign-in" value ="sign in"></input>
 	</form>

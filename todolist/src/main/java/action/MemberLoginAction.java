@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import vo.MemberVo;
 
 public class MemberLoginAction implements Action{
+	@SuppressWarnings("null")
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -25,12 +27,15 @@ public class MemberLoginAction implements Action{
 			if(password.equals(member.getPassword())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("userName", userName);
-				context.log("로그인 성공 존재하지 않습니다.");
+				context.log("로그인 성공");
 				return new ActionForward(false, "member/TodoList.jsp");
 			}
 		}else {
 			context.log("아이디가 존재하지 않습니다.");
+			String login="dontExist";
+			request.setAttribute("login", login);
+			
 		}
-		return new ActionForward(false, "member/member_form.jsp");
+		return new ActionForward(false, "index.jsp");
 	}
 }
