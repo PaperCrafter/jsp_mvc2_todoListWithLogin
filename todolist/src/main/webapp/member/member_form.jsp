@@ -15,7 +15,6 @@ if(signinMsg == "existUser"){
 	PrintWriter pw = response.getWriter();
 	pw.println("<script>alert('uesrname already exist');</script>");
 }
-
 if(signinMsg == "pwdDosentEqual"){
 	response.setContentType("text/html; charset=utf-8");
 	PrintWriter pw = response.getWriter();

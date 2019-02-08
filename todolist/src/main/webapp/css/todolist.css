@@ -38,6 +38,11 @@
 	background-color: #F0F0F0;
 }
 
+.tableTodo{
+	width:600px;
+	text-align:center;
+}
+
 .done .doneHeader{
 	width: 100%;
 	text-align:center;
@@ -45,13 +50,20 @@
 	background-color:#4d90fe;
 }
 
+.done{
+	text-align:center;
+}
 
 .done h1{
 	margin:0px;
-	
 }
 
 .done p{
 	margin:0px;
-	
 }
+
+.tabledone{
+	width: 600px;
+	text-align:center;
+}
+

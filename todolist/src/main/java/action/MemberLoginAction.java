@@ -27,6 +27,7 @@ public class MemberLoginAction implements Action{
 			if(password.equals(member.getPassword())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("userName", userName);
+				session.setAttribute("userId",member.getId());
 				context.log("로그인 성공");
 				return new ActionForward(false, "member/TodoList.jsp");
 			}
